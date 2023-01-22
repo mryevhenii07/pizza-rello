@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/pizzarello/static/css/main.073c9b0a.css",
+    "main.js": "/pizzarello/static/js/main.39a20460.js",
+    "index.html": "/pizzarello/index.html",
+    "main.073c9b0a.css.map": "/pizzarello/static/css/main.073c9b0a.css.map",
+    "main.39a20460.js.map": "/pizzarello/static/js/main.39a20460.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.39a20460.js"
+  ]
+}
