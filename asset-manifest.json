@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/pizzarello/static/css/main.073c9b0a.css",
-    "main.js": "/pizzarello/static/js/main.39a20460.js",
+    "main.css": "/pizzarello/static/css/main.25d85a51.css",
+    "main.js": "/pizzarello/static/js/main.c5a7380c.js",
     "index.html": "/pizzarello/index.html",
-    "main.073c9b0a.css.map": "/pizzarello/static/css/main.073c9b0a.css.map",
-    "main.39a20460.js.map": "/pizzarello/static/js/main.39a20460.js.map"
+    "main.25d85a51.css.map": "/pizzarello/static/css/main.25d85a51.css.map",
+    "main.c5a7380c.js.map": "/pizzarello/static/js/main.c5a7380c.js.map"
   },
   "entrypoints": [
-    "static/css/main.073c9b0a.css",
-    "static/js/main.39a20460.js"
+    "static/css/main.25d85a51.css",
+    "static/js/main.c5a7380c.js"
   ]
 }
