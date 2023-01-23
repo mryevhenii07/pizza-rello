@@ -1,13 +1,19 @@
-const Categories = () => {
+import { useState } from 'react';
+
+
+
+const Categories: React.FC = () => {
+    const [activeindex, setActiveIndex] = useState(0)
+
+    const categories = ["Вегетаріанська", "М'ясні", "Гриль", "Гострі", "Закриті"]
+
+    const handleClickCategory = (index: number) => {
+        setActiveIndex(index)
+    }
     return (
         <div className="categories">
             <ul>
-                <li className="active">Всі</li>
-                <li>Вегетаріанська</li>
-                <li>М'ясні</li>
-                <li>Гриль</li>
-                <li>Гострі</li>
-                <li>Закриті</li>
+                {categories.map((value, index) => <li key={index} onClick={() => handleClickCategory(index)} className={activeindex === index ? "active" : ""}>{value}</li>)}
             </ul>
         </div>
     )

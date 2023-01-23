@@ -5,9 +5,10 @@ import Header from './components/Header';
 import Sort from './components/Sort';
 import Categories from './components/Categories';
 import Pizza from './components/Pizza';
-
+import pizzas from './assets/pizza/pizza.json';
 
 function App() {
+
   return (
     <div className="wrapper">
       <Header />
@@ -19,7 +20,10 @@ function App() {
           </div>
           <h2 className="content__title">Всі піци</h2>
           <div className="content__items">
-            <Pizza />
+
+            {
+              pizzas.map((pizza) => <Pizza key={pizza.id} {...pizza} />)
+            }
 
           </div>
         </div>

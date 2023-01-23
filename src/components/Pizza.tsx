@@ -1,28 +1,30 @@
-import React from 'react'
+import { useState } from 'react'
+import { MyPizza } from '../interface/pizza';
 
-const Pizza = () => {
+const Pizza: React.FC<MyPizza> = ({ id, imageURL, title, price, category, rating, sizes, types }) => {
+    const [activeType, setActiveType] = useState(0)
+    const [activeSize, setActiveSize] = useState(0)
+
+    const typesName = ["тонке", "традиційне"]
     return (
         <div className="pizza-block">
             <img
                 className="pizza-block__image"
-                src="https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
+                src={imageURL}
                 alt="Pizza"
             />
-            <h4 className="pizza-block__title">Чізбургер-піца</h4>
+            <h4 className="pizza-block__title">{title}</h4>
             <div className="pizza-block__selector">
                 <ul>
-                    <li className="active">тонке</li>
-                    <li>традиційне</li>
+                    {types.map((type, index) => <li onClick={() => setActiveType(index)} key={type} className={activeType === index ? "active" : ""}>{typesName[type]}</li>)}
                 </ul>
                 <ul>
-                    <li className="active">26 см.</li>
-                    <li>30 см.</li>
-                    <li>40 см.</li>
+                    {sizes.map((size, index) => <li onClick={() => setActiveSize(index)} key={size} className={activeSize === index ? "active" : ""}>{size} см.</li>)}
                 </ul>
             </div>
             <div className="pizza-block__bottom">
-                <div className="pizza-block__price">від 95 грн</div>
-                <div className="button button--outline button--add">
+                <div className="pizza-block__price">від {price} грн</div>
+                <button className="button button--outline button--add">
                     <svg
                         width="12"
                         height="12"
@@ -35,9 +37,9 @@ const Pizza = () => {
                             fill="white"
                         />
                     </svg>
-                    <span>Додати</span>
-                    <i>2</i>
-                </div>
+                    <span >Додати</span>
+                    <i>0</i>
+                </button>
             </div>
         </div>
     )
