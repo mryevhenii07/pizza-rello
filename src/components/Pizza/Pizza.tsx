@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { MyPizza } from '../interface/pizza';
+import { MyPizza } from '../../interface/pizza';
 
 const Pizza: React.FC<MyPizza> = ({ id, imageUrl, title, price, category, rating, sizes, types }) => {
     const [activeType, setActiveType] = useState(0)

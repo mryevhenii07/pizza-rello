@@ -1,0 +1,82 @@
+[
+  {
+    "id": "1",
+    "imageUrl": "https://dodopizza-a.akamaihd.net/static/Img/Products/02ca2561953b488993878d1f70e359de_366x366.webp",
+    "title": "Мапгаріта",
+    "types": [0, 1],
+    "sizes": [25, 30, 40],
+    "price": 120,
+    "category": 3,
+    "rating": 7
+  },
+  {
+    "id": "2",
+    "imageUrl": "https://dodopizza-a.akamaihd.net/static/Img/Products/02ca2561953b488993878d1f70e359de_366x366.webp",
+    "title": "Мапгаріта",
+    "types": [0, 1],
+    "sizes": [25, 40],
+    "price": 120,
+    "category": 3,
+    "rating": 7
+  },
+  {
+    "id": "3",
+    "imageUrl": "https://dodopizza-a.akamaihd.net/static/Img/Products/02ca2561953b488993878d1f70e359de_366x366.webp",
+    "title": "Мапгаріта",
+    "types": [0, 1],
+    "sizes": [25, 30, 40],
+    "price": 120,
+    "category": 3,
+    "rating": 7
+  },
+  {
+    "id": "4",
+    "imageUrl": "https://dodopizza-a.akamaihd.net/static/Img/Products/02ca2561953b488993878d1f70e359de_366x366.webp",
+    "title": "Мапгаріта",
+    "types": [1],
+    "sizes": [25, 30],
+    "price": 120,
+    "category": 3,
+    "rating": 7
+  },
+  {
+    "id": "5",
+    "imageUrl": "https://dodopizza-a.akamaihd.net/static/Img/Products/02ca2561953b488993878d1f70e359de_366x366.webp",
+    "title": "Мапгаріта",
+    "types": [0],
+    "sizes": [25, 30, 40],
+    "price": 120,
+    "category": 3,
+    "rating": 7
+  },
+  {
+    "id": "6",
+    "imageUrl": "https://dodopizza-a.akamaihd.net/static/Img/Products/02ca2561953b488993878d1f70e359de_366x366.webp",
+    "title": "Мапгаріта",
+    "types": [0, 1],
+    "sizes": [30, 40],
+    "price": 220,
+    "category": 3,
+    "rating": 7
+  },
+  {
+    "id": "7",
+    "imageUrl": "https://dodopizza-a.akamaihd.net/static/Img/Products/02ca2561953b488993878d1f70e359de_366x366.webp",
+    "title": "Мапгаріта",
+    "types": [0, 1],
+    "sizes": [25, 40],
+    "price": 100,
+    "category": 3,
+    "rating": 7
+  },
+  {
+    "id": "8",
+    "imageUrl": "https://dodopizza-a.akamaihd.net/static/Img/Products/02ca2561953b488993878d1f70e359de_366x366.webp",
+    "title": "Мапгаріта",
+    "types": [0, 1],
+    "sizes": [25, 30, 40],
+    "price": 120,
+    "category": 3,
+    "rating": 7
+  }
+]
