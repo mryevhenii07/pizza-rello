@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { MyPizza } from '../interface/pizza';
 
-const Pizza: React.FC<MyPizza> = ({ id, imageURL, title, price, category, rating, sizes, types }) => {
+const Pizza: React.FC<MyPizza> = ({ id, imageUrl, title, price, category, rating, sizes, types }) => {
     const [activeType, setActiveType] = useState(0)
     const [activeSize, setActiveSize] = useState(0)
 
@@ -10,7 +10,7 @@ const Pizza: React.FC<MyPizza> = ({ id, imageURL, title, price, category, rating
         <div className="pizza-block">
             <img
                 className="pizza-block__image"
-                src={imageURL}
+                src={imageUrl}
                 alt="Pizza"
             />
             <h4 className="pizza-block__title">{title}</h4>

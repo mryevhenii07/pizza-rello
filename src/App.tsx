@@ -1,13 +1,18 @@
-import React from 'react';
+import { useEffect, useState } from 'react';
 
 import './scss/app.scss';
 import Header from './components/Header';
 import Sort from './components/Sort';
 import Categories from './components/Categories';
 import Pizza from './components/Pizza';
-import pizzas from './assets/pizza/pizza.json';
+import { MyPizza } from './interface/pizza';
 
 function App() {
+  const [pizzas, setPizzas] = useState<MyPizza[]>([])
+
+  useEffect(() => {
+    fetch("https://628f5e0d0e69410599db2da5.mockapi.io/items").then((response) => response.json()).then((res) => setPizzas(res))
+  }, [])
 
   return (
     <div className="wrapper">

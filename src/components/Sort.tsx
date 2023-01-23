@@ -10,7 +10,6 @@ const Sort = () => {
     const handleClickList = (index: number) => {
         setSelected(index)
         setOpen(false)
-
     }
     return (
         <div className="sort">
@@ -33,12 +32,8 @@ const Sort = () => {
             {open && <div className="sort__popup">
                 <ul>
                     {list.map((item, index) => <li key={index} onClick={() => handleClickList(index)} className={selected === index ? "active" : ""}>{item}</li>)}
-
-                    {/* <li>ціна</li>
-                    <li>алфавіту</li> */}
                 </ul>
             </div>}
-
         </div>
     )
 }

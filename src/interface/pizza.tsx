@@ -1,8 +1,8 @@
 
 
 export interface MyPizza {
-    id: number,
-    imageURL: string,
+    id: string,
+    imageUrl: string,
     title: string,
     types: number[],
     sizes: number[],
