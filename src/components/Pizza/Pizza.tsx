@@ -7,7 +7,7 @@ const Pizza: React.FC<MyPizza> = ({ id, imageUrl, title, price, category, rating
 
     const typesName = ["тонке", "традиційне"]
     return (
-        <div className="pizza-block">
+        <div className='pizza-block-wrapper'>  <div className="pizza-block">
             <img
                 className="pizza-block__image"
                 src={imageUrl}
@@ -41,7 +41,7 @@ const Pizza: React.FC<MyPizza> = ({ id, imageUrl, title, price, category, rating
                     <i>0</i>
                 </button>
             </div>
-        </div>
+        </div></div>
     )
 }
 

@@ -14,17 +14,17 @@ const App = () => {
     <div className="wrapper">
       <Header />
       <div className="content">
-        <div className="container">
-          <Routes>
-            <Route path='/pizzarello' element={<Home />} />
-            <Route path='/cart' element={<Cart />} />
 
-            <Route path='*' element={<NotFound />} />
-          </Routes>
+        <Routes>
+          <Route path='/pizzarello' element={<Home />} />
+          <Route path='/cart' element={<Cart />} />
+
+          <Route path='*' element={<NotFound />} />
+        </Routes>
 
 
 
-        </div>
+
       </div>
     </div>
   );
