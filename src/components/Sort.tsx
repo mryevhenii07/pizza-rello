@@ -1,14 +1,22 @@
 import { useState } from 'react';
 
-const Sort = () => {
+interface Props {
+    sort: number,
+    // handleClickList: (id: number) => void
+}
+
+const Sort: React.FC<Props> = ({ sort }) => {
     const [open, setOpen] = useState(false)
-    const [selected, setSelected] = useState(0)
 
     const list = ["популярності", "ціна", "алфавіту"]
-    const sortName = list[selected]
+    // const list = [
+    //     { name: "популярності", sortProperty: "rating" },
+    //     { name: "ціна", sortProperty: "price" },
+    //     { name: "алфавіту", sortProperty: "rating" }
+    // ]
+    const sortName = list[sort]
 
-    const handleClickList = (index: number) => {
-        setSelected(index)
+    const handleClick = (i: number) => {
         setOpen(false)
     }
     return (
@@ -31,7 +39,7 @@ const Sort = () => {
             </div>
             {open && <div className="sort__popup">
                 <ul>
-                    {list.map((item, index) => <li key={index} onClick={() => handleClickList(index)} className={selected === index ? "active" : ""}>{item}</li>)}
+                    {list.map((item, index) => <li key={index} onClick={() => handleClick(index)} className={sort === index ? "active" : ""}>{item}</li>)}
                 </ul>
             </div>}
         </div>

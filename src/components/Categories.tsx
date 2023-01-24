@@ -1,19 +1,18 @@
-import { useState } from 'react';
 
+interface Props {
+    categoryId: number;
+    handleClickCategory: (id: number) => void
 
+}
 
-const Categories: React.FC = () => {
-    const [activeindex, setActiveIndex] = useState(0)
+const Categories: React.FC<Props> = ({ categoryId, handleClickCategory }) => {
 
-    const categories = ["Вегетаріанська", "М'ясні", "Гриль", "Гострі", "Закриті"]
+    const categories = ["Всі", "Вегетаріанська", "М'ясні", "Гриль", "Гострі", "Закриті"]
 
-    const handleClickCategory = (index: number) => {
-        setActiveIndex(index)
-    }
     return (
         <div className="categories">
             <ul>
-                {categories.map((value, index) => <li key={index} onClick={() => handleClickCategory(index)} className={activeindex === index ? "active" : ""}>{value}</li>)}
+                {categories.map((value, index) => <li key={index} onClick={() => handleClickCategory(index)} className={categoryId === index ? "active" : ""}>{value}</li>)}
             </ul>
         </div>
     )
