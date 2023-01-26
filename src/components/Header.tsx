@@ -1,6 +1,10 @@
 import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+
 import logo from '../assets/images/pizza-logo.svg';
 import Search from './Search/Search'
+import cart from '../redux/slices/cartSlice'
+
 interface Props {
     setSearchValue: any,
     searchValue: string
@@ -8,6 +12,9 @@ interface Props {
 
 const Header: React.FC<Props> = ({ searchValue, setSearchValue }) => {
 
+const {totalPrice,items}= useSelector((state:any)=> state.cart)
+
+console.log(totalPrice);
     return (
         <div className="header">
             <div className="container">
@@ -23,7 +30,7 @@ const Header: React.FC<Props> = ({ searchValue, setSearchValue }) => {
 
                 <div className="header__cart">
                     <Link to="/cart" className="button button--cart">
-                        <span>120 грн</span>
+                        <span>{totalPrice} грн</span>
                         <div className="button__delimiter"></div>
                         <svg
                             width="18"
@@ -54,7 +61,7 @@ const Header: React.FC<Props> = ({ searchValue, setSearchValue }) => {
                                 strokeLinejoin="round"
                             />
                         </svg>
-                        <span>3</span>
+                        <span>{items.length}</span>
                     </Link>
                 </div>
             </div>

@@ -1,11 +1,40 @@
 import { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import {addItem} from '../../redux/slices/cartSlice'
 import { MyPizza } from '../../interface/pizza';
+ interface PropsItem {
+    id:string
+    title:string,
+    price:number,
+    imageUrl:string,
+    type:number,
+    size:number
+ }
 
-const Pizza: React.FC<MyPizza> = ({ id, imageUrl, title, price, category, rating, sizes, types }) => {
+const Pizza: React.FC<MyPizza>  = ({ id, imageUrl, title, price, category, rating, sizes, types }) => {
     const [activeType, setActiveType] = useState(0)
     const [activeSize, setActiveSize] = useState(0)
+    const [value,setValue]=useState(0)
 
     const typesName = ["тонке", "традиційне"]
+
+    const dispatch = useDispatch()
+
+    const {items} = useSelector((state:any) => state.cart)
+   
+    const handleTotal =()=>{
+
+       const item ={
+        id,
+        title,
+        price,
+        imageUrl,
+        type:typesName[activeType],
+        size:activeSize
+       }
+       dispatch(addItem(item))
+    }
+    
     return (
         <div className='pizza-block-wrapper'>  <div className="pizza-block">
             <img
@@ -24,7 +53,7 @@ const Pizza: React.FC<MyPizza> = ({ id, imageUrl, title, price, category, rating
             </div>
             <div className="pizza-block__bottom">
                 <div className="pizza-block__price">від {price} грн</div>
-                <button className="button button--outline button--add">
+                <button onClick={handleTotal} className="button button--outline button--add">
                     <svg
                         width="12"
                         height="12"
