@@ -2,8 +2,11 @@ import { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import axios from 'axios';
 
+import qs from 'qs';
+import {useNavigate} from 'react-router-dom'
+
 import type { RootState } from '../redux/store'
-import {setCategoryId,setSortId,setCurrentCount} from '../redux/slices/filterSlice'
+import {setCategoryId,setSortId,setCurrentCount,setFilters} from '../redux/slices/filterSlice'
 import { MyPizza } from '../interface/pizza'
 import Categories from '../components/Categories'
 import Sort from '../components/Sort'
@@ -21,9 +24,13 @@ const Home: React.FC<Props> = ({ searchValue }) => {
     const [sort, setSort] = useState(0)
 
     const dispatch =useDispatch()
+    const navigate = useNavigate()
 
-const categoryId = useSelector((state:any) => state.filter.categoryId)
-const currentPage = useSelector((state:any) => state.filter.currentPage)
+    const categoryId = useSelector((state:any) => state.filter.categoryId)
+    const currentPage = useSelector((state:any) => state.filter.currentPage)
+
+    const search = searchValue ? `search=${searchValue}` : "";
+    const category = categoryId > 0 ? `category=${categoryId}` : ""
 
 const handleCategory =(id:number) =>{
     dispatch(setCategoryId(id))
@@ -33,19 +40,36 @@ const handlePageCount =(page:number)=>{
     dispatch(setCurrentCount(page))
 }
 
-    const search = searchValue ? `search=${searchValue}` : "";
-    const category = categoryId ? `category=${categoryId}` : ""
+  
+    
+    useEffect(()=>{
+        if(window.location.search){
+            const params = qs.parse(window.location.search.substring(1))
+            
+            dispatch(setFilters({...params}))
+        }
+        
+    },[])
 
     useEffect(() => {
         setIsLoading(true)
-            axios.get(`https://628f5e0d0e69410599db2da5.mockapi.io/items?${category}&${search}&limit=8&page=${currentPage}`)
+            axios.get(`https://628f5e0d0e69410599db2da5.mockapi.io/items?&page=${currentPage}&limit=8&${category}&${search}`)
             .then((res)=> {
                 setPizzas(res.data)
                 setIsLoading(false)
             })
             
         window.scrollTo(0, 0)
-    }, [category, currentPage, search])
+    }, [categoryId, currentPage, search])
+
+useEffect(()=>{
+    const queryString = qs.stringify({
+        categoryId,
+        currentPage
+    })
+  
+    navigate(`?${queryString}`)
+},[categoryId, currentPage, search])
 
     return (
         <div className="container">

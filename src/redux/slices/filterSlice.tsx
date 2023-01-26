@@ -31,11 +31,15 @@ export const filterSlice = createSlice({
   },
   setCurrentCount(state,action){
     state.currentPage = action.payload
-  }
   },
+  setFilters(state,action){
+    state.currentPage = Number(action.payload.currentPage) 
+    state.categoryId = Number(action.payload.categoryId) 
+  }
+  }
 })
 
-export const { setCategoryId,setSortId ,setCurrentCount} = filterSlice.actions
+export const { setCategoryId,setSortId ,setCurrentCount,setFilters} = filterSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectFilter = (state: RootState) => state.filter.categoryId
