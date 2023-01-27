@@ -13,8 +13,9 @@ interface Props {
 const Header: React.FC<Props> = ({ searchValue, setSearchValue }) => {
 
 const {totalPrice,items}= useSelector((state:any)=> state.cart)
+const totalCount = items.reduce((sum:any,obj:any) =>sum + obj.count,0)
 
-console.log(totalPrice);
+console.log(totalCount);
     return (
         <div className="header">
             <div className="container">
@@ -61,7 +62,7 @@ console.log(totalPrice);
                                 strokeLinejoin="round"
                             />
                         </svg>
-                        <span>{items.length}</span>
+                        <span>{totalCount}</span>
                     </Link>
                 </div>
             </div>

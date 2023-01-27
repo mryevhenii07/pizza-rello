@@ -2,23 +2,25 @@ import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import {addItem} from '../../redux/slices/cartSlice'
 import { MyPizza } from '../../interface/pizza';
- interface PropsItem {
-    id:string
-    title:string,
-    price:number,
-    imageUrl:string,
-    type:number,
-    size:number
- }
+//  interface PropsItem {
+//     id:string
+//     title:string,
+//     price:number,
+//     imageUrl:string,
+//     type:number,
+//     size:number
+//  }
 
 const Pizza: React.FC<MyPizza>  = ({ id, imageUrl, title, price, category, rating, sizes, types }) => {
     const [activeType, setActiveType] = useState(0)
     const [activeSize, setActiveSize] = useState(0)
-    const [value,setValue]=useState(0)
+    const dispatch = useDispatch()
+    const cartItem = useSelector((state:any) => state.cart.items.find((obj:any) => obj.id === id))
+const addedCount = cartItem ? cartItem.count : 0
 
     const typesName = ["тонке", "традиційне"]
 
-    const dispatch = useDispatch()
+    
 
     const {items} = useSelector((state:any) => state.cart)
    
@@ -67,7 +69,8 @@ const Pizza: React.FC<MyPizza>  = ({ id, imageUrl, title, price, category, ratin
                         />
                     </svg>
                     <span >Додати</span>
-                    <i>0</i>
+                    {addedCount > 0 &&  <i>{addedCount}</i>}
+                   
                 </button>
             </div>
         </div></div>

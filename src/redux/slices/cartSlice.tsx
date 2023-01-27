@@ -21,25 +21,38 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
 addItem(state,action){
-    state.items.push(action.payload);
+   const findItem = state.items.find((obj:any) => obj.id === action.payload.id )
+
+   if(findItem){
+    findItem.count ++;
+   } else{ 
+    state.items.push({...action.payload,count:1})}
+
     state.totalPrice = state.items.reduce((sum:number,obj:any) => {
-        return sum += obj.price
+        return obj.price * obj.count + sum
     },0)
 },
-removeItem(state,action){
-    state.items.filter((obj:any) => obj.id !== action.payload)
+decrementItem(state,action){
+    const findItem = state.items.find((obj:any) => obj.id === action.payload)
+    if(findItem){
+        findItem.count--
+    }
 },
-clearItems(state,action){
+removeItem(state,action){
+    state.items = state.items.filter((obj:any) => obj.id !== action.payload)
+},
+clearItems(state){
     state.items = []
+    state.totalPrice = 0
 },
 
   }
 })
 
-export const {removeItem ,addItem} = cartSlice.actions
+export const {removeItem ,addItem,decrementItem,clearItems} = cartSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
-// export const selectFilter = (state: RootState) => state.filter.categoryId
+export const selectFilter = (state: RootState) => state.cart
 
 export default cartSlice.reducer
 
