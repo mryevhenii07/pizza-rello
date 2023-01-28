@@ -32,7 +32,7 @@ const addedCount = cartItem ? cartItem.count : 0
         price,
         imageUrl,
         type:typesName[activeType],
-        size:activeSize
+        size:sizes[activeSize]
        }
        dispatch(addItem(item))
     }
