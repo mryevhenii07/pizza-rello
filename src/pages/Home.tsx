@@ -15,7 +15,7 @@ import Pizza from '../components/Pizza/Pizza'
 import Pagination from '../components/Pagination/Pagination'
 
 interface Props {
-    searchValue: string,
+        searchValue: string,
 
 }
 const Home: React.FC<Props> = ({ searchValue }) => {
