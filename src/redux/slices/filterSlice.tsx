@@ -6,13 +6,15 @@ import type { RootState } from '../store'
 interface filterState {
   categoryId: number,
   currentPage:number,
-  sortId:{name:string,sortProperty:string}
+  sortId:{name:string,sortProperty:string},
+  searchValue:string
 }
 
 
 const initialState: filterState = {
   categoryId: 0,
   currentPage:1,
+  searchValue:"",
   sortId:{
     name:"популярності",
     sortProperty:"rating"
@@ -35,14 +37,17 @@ export const filterSlice = createSlice({
   setFilters(state,action){
     state.currentPage = Number(action.payload.currentPage) 
     state.categoryId = Number(action.payload.categoryId) 
-  }
+  },
+  setSearchValue(state, action) {
+    state.searchValue = action.payload;
+  },
   }
 })
 
-export const { setCategoryId,setSortId ,setCurrentCount,setFilters} = filterSlice.actions
+export const {setSearchValue, setCategoryId,setSortId ,setCurrentCount,setFilters} = filterSlice.actions
 
 // Other code such as selectors can use the imported `RootState` type
-export const selectFilter = (state: RootState) => state.filter.categoryId
+// export const selectFilter = (state: RootState) => state.filter.categoryId
 
 export default filterSlice.reducer
 

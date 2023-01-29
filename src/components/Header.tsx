@@ -27,7 +27,7 @@ console.log(totalCount);
                             <p>Найсмачніша піца у всесвіті </p>
                         </div>
                     </div></Link>
-                <Search searchValue={searchValue} setSearchValue={setSearchValue} />
+                <Search />
 
                 <div className="header__cart">
                     <Link to="/cart" className="button button--cart">

@@ -19,18 +19,17 @@ interface Props {
         searchValue: string,
 
 }
-const Home: React.FC<Props> = ({ searchValue }) => {
-    // const [pizzas, setPizzas] = useState<MyPizza[]>([])
+const Home: React.FC<Props> = () => {
+    
     const [isLoading, setIsLoading] = useState(true)
     const [sort, setSort] = useState(0)
 
     const dispatch =useDispatch()
     const navigate = useNavigate()
+    const {categoryId,searchValue,currentPage} = useSelector((state:any) => state.filter)
 
-    const categoryId = useSelector((state:any) => state.filter.categoryId)
-    const currentPage = useSelector((state:any) => state.filter.currentPage)
     const items = useSelector((state:any) => state.pizza.items)
-console.log(items);
+
 const handleCategory =(id:number) =>{
     dispatch(setCategoryId(id))
 }

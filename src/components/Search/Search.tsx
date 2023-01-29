@@ -1,34 +1,47 @@
-import {useRef,useEffect, useState} from 'react'
-
-
+import {useRef, useState,useCallback} from 'react'
+import {  useDispatch } from 'react-redux'
 import { GoSearch } from 'react-icons/go';
 import { GrClose } from 'react-icons/gr';
+import debounce from 'lodash.debounce';
 
+import {setSearchValue} from '../../redux/slices/filterSlice'
 import s from './Search.module.scss'
-interface Props {
-    searchValue: string,
-    setSearchValue: any
-}
 
-const Search: React.FC<Props> = ({ searchValue, setSearchValue }) => {
+const Search: React.FC = () => {
+const dispatch = useDispatch()
+const [value,setValue]=useState<string>("")
+const inputRef = useRef<HTMLInputElement>(null)
 
-    const inputRef = useRef<HTMLInputElement>(null)
-
-
-    const handleFocus =()=>{ 
-         setSearchValue("")
-         inputRef.current?.focus()
-      
+    const handleClickClear =()=>{ 
+        dispatch(setSearchValue(""))
+        setValue("")
+        inputRef.current?.focus()
     }
 
+    const updateSearchValue = useCallback(
+        debounce((str: string) => {
+        dispatch(setSearchValue(str));
+        console.log(str);
+        }, 500),
+        
+        [],
+    );
+
     const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
-        setSearchValue(e.target.value)
+        setValue(e.target.value)
+        updateSearchValue(e.target.value);
     }
     return (
         <div className={s.root} >
             <GoSearch className={s.icon} />
-            <input ref={inputRef} className={s.input} type="text" placeholder='Пошук піци' value={searchValue} onChange={handleChange} />
-            {searchValue && <GrClose onClick={handleFocus}  className={s.clearIcon} />}
+            <input
+             ref={inputRef} 
+             className={s.input} 
+             type="text"
+              placeholder='Пошук піци'
+               value={value} 
+               onChange={handleChange} />
+            {value && <GrClose onClick={handleClickClear}  className={s.clearIcon} />}
         </div>
     )
 }
