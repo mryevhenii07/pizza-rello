@@ -1,5 +1,4 @@
 
-
 export interface MyPizza {
     id: string,
     imageUrl: string,
@@ -8,5 +7,7 @@ export interface MyPizza {
     sizes: number[],
     price: number,
     category: number,
-    rating: number
+    rating: number,
+    info:string
+    
 }
