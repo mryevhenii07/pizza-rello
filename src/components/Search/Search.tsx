@@ -21,8 +21,8 @@ const inputRef = useRef<HTMLInputElement>(null)
     const updateSearchValue = useCallback(
         debounce((str: string) => {
         dispatch(setSearchValue(str));
-        console.log(str);
-        }, 500),
+    
+        }, 250),
         
         [],
     );

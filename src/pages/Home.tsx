@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import axios from 'axios';
 
 import qs from 'qs';
-import {useNavigate} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 
 import type { RootState } from '../redux/store'
 import {setCategoryId,setSortId,setCurrentCount,setFilters} from '../redux/slices/filterSlice'
@@ -15,11 +15,11 @@ import Pizza from '../components/Pizza/Pizza'
 import Pagination from '../components/Pagination/Pagination'
 import { setItems } from 'redux/slices/pizzasSlice';
 
-interface Props {
-        searchValue: string,
+// interface Props {
+//         searchValue: string,
 
-}
-const Home: React.FC<Props> = () => {
+// }
+const Home: React.FC = () => {
     
     const [isLoading, setIsLoading] = useState(true)
     const [sort, setSort] = useState(0)
@@ -86,7 +86,7 @@ useEffect(()=>{
                         if (obj.title.toLowerCase().includes(searchValue.toLowerCase())) { return true }
                         return false
                     })
-                    .map((pizza:any) => <Pizza key={pizza.id} {...pizza} />)}
+                    .map((pizza:any) =>  <Pizza key={pizza.id} {...pizza}/>  )}
             </div>
             <Pagination currentPage={currentPage} handleChangePage={handlePageCount} />
         </div>

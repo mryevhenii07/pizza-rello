@@ -16,11 +16,11 @@ const FullPizza: React.FC = () => {
   React.useEffect(() => {
     async function fetchPizza() {
       try {
-        const { data } = await axios.get('https://626d16545267c14d5677d9c2.mockapi.io/items/' + id);
+        const { data } = await axios.get('https://628f5e0d0e69410599db2da5.mockapi.io/items/' + id);
         setPizza(data);
       } catch (error) {
-        alert('Ошибка при получении пиццы!');
-        navigate('/');
+        alert('Помилка при отриманні піци!');
+        navigate('/pizzarello');
       }
     }
 
@@ -28,15 +28,15 @@ const FullPizza: React.FC = () => {
   }, []);
 
   if (!pizza) {
-    return <>Загрузка...</>;
+    return <>Завантаження...</>;
   }
 
   return (
     <div className="container">
-      <img src={pizza.imageUrl} />
+      <img src={pizza.imageUrl} alt="Img"/>
       <h2>{pizza.title}</h2>
-      <h4>{pizza.price} ₽</h4>
-      <Link to="/">
+      <h4>{pizza.price} грн</h4>
+      <Link to="/pizzarello">
         <button className="button button--outline button--add">
           <span>Назад</span>
         </button>
@@ -46,3 +46,5 @@ const FullPizza: React.FC = () => {
 };
 
 export default FullPizza;
+
+
