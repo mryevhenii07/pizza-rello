@@ -3,28 +3,27 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector,useDispatch } from 'react-redux'
 import {clearItems} from '../redux/slices/cartSlice'
+import {RootState} from '../redux/store';
 
 import CartItem from '../components/CartItem/CartItem'
 import CartEmpty from '../components/CartEmpty/CartEmpty'
 
 
-const Cart = () => {  
-const dispatch = useDispatch()
-    const {totalPrice,items}=useSelector((state:any) => state.cart)
-    const totalCount = items.reduce((sum:number,obj:any)=> obj.count + sum,0)
-    // const cartItem = useSelector((state:any) => state.cart.items.find((obj:any) => obj.id === id))
-
+const Cart:React.FC = () => {  
+    const dispatch = useDispatch()
+    const {totalPrice,items}=useSelector((state:RootState) => state.cart)
+    const totalCount = items.reduce((sum:number,obj)=> (obj.count || 0) + sum,0)
+    
     const handleClearItem =()=>{
         if(window.confirm("Ви впевнені, що хочете видалити?")){
             dispatch(clearItems()) 
-
         }
     }
+
     if(!totalPrice){
-     return  <CartEmpty/>
+        return  <CartEmpty/>
     }
     return (
-
         <div className="container">
             <div className="container container--cart">
                 <div className="cart">
@@ -89,7 +88,6 @@ const dispatch = useDispatch()
                                     strokeLinecap="round"
                                     strokeLinejoin="round"></path>
                             </svg>
-
                             <span >Очистити корзину</span>
                         </div>
                     </div>

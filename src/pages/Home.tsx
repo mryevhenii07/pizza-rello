@@ -1,48 +1,35 @@
-import { useState, useEffect } from 'react'
+
+
+import { useState, useEffect, useRef } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import axios from 'axios';
-
 import qs from 'qs';
-import {Link, useNavigate} from 'react-router-dom'
+import { useNavigate} from 'react-router-dom'
 
-import type { RootState } from '../redux/store'
-import {setCategoryId,setSortId,setCurrentCount,setFilters} from '../redux/slices/filterSlice'
-import { MyPizza } from '../interface/pizza'
+import {setCategoryId,setSortId,setCurrentCount,setFilters} from '../redux/filter/filterSlice'
 import Categories from '../components/Categories'
-import Sort from '../components/Sort'
+import {Sort} from '../components/Sort'
 import Skeleton from '../components/Pizza/Skeleton'
 import Pizza from '../components/Pizza/Pizza'
 import Pagination from '../components/Pagination/Pagination'
-import { setItems } from 'redux/slices/pizzasSlice';
+import { setItems } from '../redux/pizza/pizzasSlice';
 
-// interface Props {
-//         searchValue: string,
-
-// }
 const Home: React.FC = () => {
-    
     const [isLoading, setIsLoading] = useState(true)
-    const [sort, setSort] = useState(0)
-
-    const dispatch =useDispatch()
+    
+    const dispatch = useDispatch()
     const navigate = useNavigate()
-    const {categoryId,searchValue,currentPage} = useSelector((state:any) => state.filter)
 
+    const {categoryId,searchValue,currentPage,sort} = useSelector((state:any) => state.filter)
     const items = useSelector((state:any) => state.pizza.items)
 
-const handleCategory =(id:number) =>{
+    const handleCategory =(id:number) =>{
     dispatch(setCategoryId(id))
 }
 
-const handlePageCount =(page:number)=>{
+    const handlePageCount =(page:number)=>{
     dispatch(setCurrentCount(page))
 }
-
-    useEffect(()=>{
-        if(window.location.search){
-            const params = qs.parse(window.location.search.substring(1))
-            dispatch(setFilters({...params}))
-        }},[])
 
 const fetchPizzas = async ()=>{
         setIsLoading(true)
@@ -51,8 +38,8 @@ const fetchPizzas = async ()=>{
         try {  
         const {data} = await axios.get(`https://628f5e0d0e69410599db2da5.mockapi.io/items?&page=${currentPage}&limit=8&${category}&${search}`)
         dispatch(setItems(data))
-            // setPizzas(data) 
         }
+        
         catch(error){
             alert("Помилка при отриманні піц")
             console.log("Error",error);
@@ -73,20 +60,23 @@ useEffect(()=>{
     fetchPizzas()
 },[categoryId, currentPage, navigate])
 
+
+const skeleton = [...new Array(8)].map((_, index) => <Skeleton key={index} />) 
+const pizzas = items
+.filter((obj:any) => {
+    if (obj.title.toLowerCase().includes(searchValue.toLowerCase())) { return true }
+    return false
+})
+.map((pizza:any) =>  <Pizza key={pizza.id} {...pizza}/>  )
     return (
         <div className="container">
             <div className="content__top">
                 <Categories categoryId={categoryId} handleClickCategory={handleCategory} />
-                {/* <Sort value={sort}/> */}
+                <Sort value={sort}/>
             </div>
             <h2 className="content__title">Всі піци</h2>
             <div className="content__items">
-                {isLoading ? [...new Array(8)].map((_, index) => <Skeleton key={index} />) : items
-                    .filter((obj:any) => {
-                        if (obj.title.toLowerCase().includes(searchValue.toLowerCase())) { return true }
-                        return false
-                    })
-                    .map((pizza:any) =>  <Pizza key={pizza.id} {...pizza}/>  )}
+                {isLoading ? skeleton : pizzas}
             </div>
             <Pagination currentPage={currentPage} handleChangePage={handlePageCount} />
         </div>
@@ -94,3 +84,4 @@ useEffect(()=>{
 }
 
 export default Home
+

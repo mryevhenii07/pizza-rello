@@ -1,11 +1,7 @@
 import React from 'react'
 
 import s from './NotFoundBlock.module.scss'
-
-
-
-
-const NotFoundBlock = () => {
+const NotFoundBlock:React.FC = () => {
     return (
         <div>
             <h1 className={s.root}>NotFoundBlock :(</h1>

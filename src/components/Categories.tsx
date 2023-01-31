@@ -2,7 +2,6 @@
 interface Props {
     categoryId: number;
     handleClickCategory: (id: number) => void
-
 }
 
 const Categories: React.FC<Props> = ({ categoryId, handleClickCategory }) => {

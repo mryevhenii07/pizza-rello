@@ -2,6 +2,7 @@ import React from 'react'
 import {  useDispatch } from 'react-redux'
 import { addItem,decrementItem,removeItem} from 'redux/slices/cartSlice';
 
+
 interface CartItemProps  {
     id: string;
     title: string;
@@ -16,9 +17,7 @@ const CartItem:React.FC<CartItemProps> = ({title,count,price,id,imageUrl,type,si
 const dispatch = useDispatch()
 
 const handelClickPlus = ()=>{
-    dispatch(addItem({
-        id
-    }))
+    dispatch(addItem({id}))
 }
 const handelClickMinus = ()=>{
     dispatch(decrementItem(id))

@@ -4,7 +4,7 @@ import { GoSearch } from 'react-icons/go';
 import { GrClose } from 'react-icons/gr';
 import debounce from 'lodash.debounce';
 
-import {setSearchValue} from '../../redux/slices/filterSlice'
+import {setSearchValue} from '../../redux/filter/filterSlice'
 import s from './Search.module.scss'
 
 const Search: React.FC = () => {
@@ -21,10 +21,7 @@ const inputRef = useRef<HTMLInputElement>(null)
     const updateSearchValue = useCallback(
         debounce((str: string) => {
         dispatch(setSearchValue(str));
-    
-        }, 250),
-        
-        [],
+        }, 250),[],
     );
 
     const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
@@ -35,12 +32,12 @@ const inputRef = useRef<HTMLInputElement>(null)
         <div className={s.root} >
             <GoSearch className={s.icon} />
             <input
-             ref={inputRef} 
-             className={s.input} 
-             type="text"
-              placeholder='Пошук піци'
-               value={value} 
-               onChange={handleChange} />
+            ref={inputRef} 
+            className={s.input} 
+            type="text"
+            placeholder='Пошук піци'
+            value={value} 
+            onChange={handleChange} />
             {value && <GrClose onClick={handleClickClear}  className={s.clearIcon} />}
         </div>
     )
