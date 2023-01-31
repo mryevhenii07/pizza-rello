@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/pizzarello/static/css/main.b588e57c.css",
-    "main.js": "/pizzarello/static/js/main.835e6dd9.js",
+    "main.js": "/pizzarello/static/js/main.0f0f2400.js",
     "static/media/empty-cart.png": "/pizzarello/static/media/empty-cart.db905d1f4b063162f25b.png",
     "static/media/pizza-logo.svg": "/pizzarello/static/media/pizza-logo.56ac87032d8f6fdf863326acd06c0d97.svg",
     "index.html": "/pizzarello/index.html",
     "main.b588e57c.css.map": "/pizzarello/static/css/main.b588e57c.css.map",
-    "main.835e6dd9.js.map": "/pizzarello/static/js/main.835e6dd9.js.map"
+    "main.0f0f2400.js.map": "/pizzarello/static/js/main.0f0f2400.js.map"
   },
   "entrypoints": [
     "static/css/main.b588e57c.css",
-    "static/js/main.835e6dd9.js"
+    "static/js/main.0f0f2400.js"
   ]
 }
