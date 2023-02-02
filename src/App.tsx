@@ -5,6 +5,7 @@ import Home from './pages/Home'
 import NotFound from './pages/NotFound';
 import Cart from './pages/Cart';
 import FullPizza from './pages/FullPizza'
+import './App.css'
 import './scss/app.scss';
 
 const App = () => {
