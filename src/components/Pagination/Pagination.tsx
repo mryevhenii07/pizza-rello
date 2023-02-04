@@ -3,7 +3,7 @@ import ReactPaginate from 'react-paginate';
 import s from './Pagination.module.scss'
 
 interface PaginationProps {
-    handleChangePage: (number: number) => void;
+    handleChangePage: (page: number) => void;
     currentPage:number
 }
 

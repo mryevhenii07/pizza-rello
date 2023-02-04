@@ -13,6 +13,7 @@ import Skeleton from '../components/Pizza/Skeleton'
 import Pizza from '../components/Pizza/Pizza'
 import Pagination from '../components/Pagination/Pagination'
 import { setItems } from '../redux/pizza/pizzasSlice';
+import {RootState} from '../redux/store'
 
 const Home: React.FC = () => {
     const [isLoading, setIsLoading] = useState(true)
@@ -20,8 +21,8 @@ const Home: React.FC = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const {categoryId,searchValue,currentPage,sort} = useSelector((state:any) => state.filter)
-    const items = useSelector((state:any) => state.pizza.items)
+    const {categoryId,searchValue,currentPage,sort} = useSelector((state:RootState) => state.filter)
+    const items = useSelector((state:RootState) => state.pizza.items)
 
     const handleCategory =(id:number) =>{
     dispatch(setCategoryId(id))

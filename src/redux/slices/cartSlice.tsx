@@ -7,9 +7,7 @@ import {MyPizza} from '../../interface/pizza'
 interface filterState {
     totalPrice: number,
     items:MyPizza[]
- 
 }
-
 
 const initialState: filterState = {
     totalPrice: 0,
@@ -22,7 +20,7 @@ export const cartSlice = createSlice({
   initialState,
   reducers: {
 addItem(state,action){
-   const findItem = state.items.find((obj:any) => obj.id === action.payload.id )
+   const findItem = state.items.find((obj) => obj.id === action.payload.id )
 
    if(findItem?.count){
     findItem.count ++;
@@ -52,8 +50,8 @@ clearItems(state){
 
 export const {removeItem ,addItem,decrementItem,clearItems} = cartSlice.actions
 
-// Other code such as selectors can use the imported `RootState` type
-export const selectFilter = (state: RootState) => state.cart
+export const selectCart = (state: RootState) => state.cart
+export const selectCartItemById = (id:string) => (state:RootState) => state.cart.items.find((obj) => obj.id === id)
 
 export default cartSlice.reducer
 

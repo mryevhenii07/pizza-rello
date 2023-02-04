@@ -24,7 +24,7 @@ const inputRef = useRef<HTMLInputElement>(null)
         }, 250),[],
     );
 
-    const handleChange: React.ChangeEventHandler<HTMLInputElement> = (e) => {
+    const handleChange = (e:React.ChangeEvent<HTMLInputElement>) => {
         setValue(e.target.value)
         updateSearchValue(e.target.value);
     }

@@ -6,6 +6,7 @@ import styled from 'styled-components'
 import {addItem} from '../../redux/slices/cartSlice'
 import { MyPizza } from '../../interface/pizza';
 import {RootState} from '../../redux/store'
+import {theme} from '../../theme/theme'
 
 
 const typesName = ["тонке", "традиційне"]
@@ -92,14 +93,14 @@ const Selector = styled.div`
 `
 
 const PizzaBlockTitle = styled.h4`
-    font-size: 20px;
-    font-weight: 900;
+    font-size: ${(p:any) => p.theme.fontSizes.l};
+    font-weight: ${(p:any) => p.theme.fontWeights.boldN};
     letter-spacing: 1%;
     margin-bottom: 20px;
 `
 const Price = styled.div`
-    font-weight: bold;
-    font-size: 22px;
+    font-weight: ${(p:any) => p.theme.fontWeights.bold};
+    font-size: ${(p:any) => p.theme.fontSizes.xl};
     line-height: 27px;
     letter-spacing: 0.015em;
 `
@@ -125,7 +126,7 @@ const LiEl = styled.li`
         flex: 1;
         cursor: pointer;
         font-weight: 600;
-        font-size: 14px;
+        font-size: ${(p:any) => p.theme.fontSizes.s};
         @include noselect();
         &.active {
         background: #ffffff;

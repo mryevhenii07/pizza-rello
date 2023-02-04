@@ -3,7 +3,7 @@
 import React,{useState,useRef} from 'react';
 import { useDispatch } from 'react-redux';
 import { setSortId } from '../redux/filter/filterSlice';
-import { Sort as SortType, SortPropertyEnum } from '../redux/filter/types';
+import { Sort as SortType, SortPropertyEnum } from '../redux/filter/interface';
 
 type SortItem = {
   name: string;
