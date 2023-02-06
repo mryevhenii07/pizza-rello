@@ -50,7 +50,6 @@ export const filterSlice = createSlice(
 
 export const {setSearchValue, setCategoryId,setSortId ,setCurrentCount,setFilters} = filterSlice.actions
 
-// Other code such as selectors can use the imported `RootState` type
 export const selectFilter = (state: RootState) => state.filter
 export const selectSort = (state: RootState) => state.filter.sort
 

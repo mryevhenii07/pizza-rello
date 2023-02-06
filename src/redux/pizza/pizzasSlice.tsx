@@ -1,4 +1,4 @@
-import { createSlice ,createAsyncThunk,AsyncThunk} from '@reduxjs/toolkit'
+import { createSlice ,createAsyncThunk,AsyncThunk, PayloadAction} from '@reduxjs/toolkit'
 import axios from 'axios';
 import type { RootState } from '../store'
 import {MyPizza} from '../../interface/pizza'
@@ -14,7 +14,7 @@ import {MyPizza} from '../../interface/pizza'
 
 interface pizzaSliceState {
 items:MyPizza[],
-status: "loading" | "succes" | "error"
+status: "loading" | "success" | "error"
 }
 
 
@@ -27,7 +27,7 @@ export const pizzasSlice = createSlice({
   name: 'pizza',
   initialState,
   reducers: {
-  setItems(state,action){
+  setItems(state,action:PayloadAction<MyPizza[]>){
     state.items = action.payload
   }
   }

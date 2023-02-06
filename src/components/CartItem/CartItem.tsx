@@ -1,28 +1,37 @@
 import React from 'react'
-import {  useDispatch } from 'react-redux'
+// import {  useDispatch } from 'react-redux'
 
 import { addItem,decrementItem,removeItem} from 'redux/slices/cartSlice';
-import {MyPizza} from '../../interface/pizza'
+import {useAppDispatch} from '../../redux/store';
 
+interface CartItemProps  {
+    id: string;
+    title: string;
+    type: string;
+    size: number;
+    price: number;
+    count: number;
+    imageUrl: string;
+  };
 
-const CartItem:React.FC<MyPizza> = ({title,count,price,id,imageUrl,types,sizes}) => {
-const dispatch = useDispatch()
+const CartItem:React.FC<CartItemProps> = ({title,count,price,id,imageUrl,type,size}) => {
+const dispatch = useAppDispatch()
 
 const handelClickPlus = ()=>{
     dispatch(addItem({id}))
 }
+
 const handelClickMinus = ()=>{
     dispatch(decrementItem(id))
 }
 
 const handleRemovePizza =()=>{
     if(window.confirm("Ви впевнені, що хочете видалити?")){
-          dispatch(removeItem(id)) 
+        dispatch(removeItem(id)) 
     }
 }
 
-
-  return (
+return (
 <div className="content__items">
     <div className="cart__item">
         <div className="cart__item-img">
@@ -30,7 +39,7 @@ const handleRemovePizza =()=>{
         </div>
     <div className="cart__item-info">
     <h3>{title}</h3>
-        <p>{types}, {sizes} см.</p>
+        <p>{type}, {size} см.</p>
             </div>
         <div className="cart__item-count">
                 <button onClick={handelClickMinus}  className="button button--outline button--circle cart__item-count-minus">
@@ -46,9 +55,9 @@ const handleRemovePizza =()=>{
                 <path d="M5.75998 5.92001L3.83998 5.92001L0.959977 5.92001C0.429817 5.92001 -2.29533e-05 5.49017 -2.29301e-05 4.96001C-2.2907e-05 4.42985 0.429817 4.00001 0.959977 4.00001L3.83998 4L5.75998 4.00001L8.63998 4.00001C9.17014 4.00001 9.59998 4.42985 9.59998 4.96001C9.59998 5.49017 9.17014 5.92001 8.63998 5.92001L5.75998 5.92001Z" fill="#EB5A1E"></path>
             </svg>
                 </button>
-        </div>
-            <div className="cart__item-price">
-                    <b>{count && count * price} грн</b>
+                    </div>
+                        <div className="cart__item-price">
+                    <b>{count * price} грн</b>
                 </div>
             <div className="cart__item-remove">
                 <button onClick={handleRemovePizza} className="button button--outline button--circle">

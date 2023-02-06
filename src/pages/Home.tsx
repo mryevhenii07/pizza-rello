@@ -1,7 +1,7 @@
 
 
-import { useState, useEffect, useRef } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useState, useEffect } from 'react'
+import { useSelector} from 'react-redux'
 import axios from 'axios';
 import qs from 'qs';
 import { useNavigate} from 'react-router-dom'
@@ -13,12 +13,13 @@ import Skeleton from '../components/Pizza/Skeleton'
 import Pizza from '../components/Pizza/Pizza'
 import Pagination from '../components/Pagination/Pagination'
 import { setItems } from '../redux/pizza/pizzasSlice';
-import {RootState} from '../redux/store'
+import {RootState,useAppDispatch} from '../redux/store'
+import {MyPizza} from '../interface/pizza'
 
 const Home: React.FC = () => {
     const [isLoading, setIsLoading] = useState(true)
     
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const navigate = useNavigate()
 
     const {categoryId,searchValue,currentPage,sort} = useSelector((state:RootState) => state.filter)
@@ -37,7 +38,7 @@ const fetchPizzas = async ()=>{
         const search = searchValue ? `search=${searchValue}` : "";
         const category = categoryId > 0 ? `category=${categoryId}` : ""
         try {  
-        const {data} = await axios.get(`https://628f5e0d0e69410599db2da5.mockapi.io/items?&page=${currentPage}&limit=8&${category}&${search}`)
+        const {data} = await axios.get<MyPizza[]>(`https://628f5e0d0e69410599db2da5.mockapi.io/items?&page=${currentPage}&limit=8&${category}&${search}`)
         dispatch(setItems(data))
         }
         
