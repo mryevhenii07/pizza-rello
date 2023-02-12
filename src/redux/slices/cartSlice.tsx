@@ -45,7 +45,7 @@ clearItems(state){
 })
 
 export const {removeItem ,addItem,decrementItem,clearItems} = cartSlice.actions
-export const selectCart = (state: RootState) => state.cart
-export const selectCartItemById = (id:string) => (state:RootState) => state.cart.items.find((obj) => obj.id === id)
+// export const selectCart = (state: RootState) => state.cart
+// export const selectCartItemById = (id:string) => (state:RootState) => state.cart.items.find((obj) => obj.id === id)
 export default cartSlice.reducer
 
